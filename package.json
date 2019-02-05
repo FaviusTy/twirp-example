@@ -1,0 +1,25 @@
+{
+  "name": "twirp-extend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm-run-all --parallel build:*",
+    "build:pbjs": "pbjs -t static-module -o ./outputs/sample.pb.js ./proto/sample.proto",
+    "build:pbts": "pbts -o ./outputs/sample.pb.d.ts  ./outputs/sample.pb.js",
+    "build:protoc": "protoc --twirp_typescript_out=library=pbjs:./outputs --twirp_out=. --go_out=. ./proto/sample.proto",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "favi_ty <favius983@gmail.com>",
+  "license": "WTFPL",
+  "dependencies": {
+    "esm": "^3.2.0",
+    "pbjs-twirp": "0.0.1",
+    "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "typescript": "^3.3.1"
+  }
+}
