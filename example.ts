@@ -5,10 +5,11 @@ interface Example {
   name: string | null | undefined;
   arr?: Example[] | null;
 }
+
 type Unwrap<T> = T extends { [K: string]: infer U }
   ? U
-  : T extends Array<infer U>
-  ? U
+  : T extends Array<infer V>
+  ? V
   : T;
 
 type isPrimitive<T> = T extends Unwrap<T> ? T : never;
