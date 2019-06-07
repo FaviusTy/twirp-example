@@ -1,5 +1,6 @@
 import "./outputs/sample.pb.d";
 import { sample } from "./outputs/sample.pb.d";
+import { DeepNonNullable } from "utility-types";
 
 interface Example {
   name: string | null | undefined;
@@ -16,17 +17,7 @@ type isPrimitive<T> = T extends Unwrap<T> ? T : never;
 
 type Diff<T, U> = T extends U ? never : T;
 
-type DeepNonNullable<T> = {
-  [P in keyof T]-?: T[P] extends isPrimitive<T[P]>
-    ? Diff<T[P], null | undefined>
-    : DeepNonNullable<T[P]>
-};
 type SafeExample = DeepNonNullable<Example>;
 type SafeRepeated = DeepNonNullable<sample.Sample.IRepeated>;
 
-type DeepNumberLong<T> = {
-  [P in keyof T]-?: T[P] extends isPrimitive<T[P]>
-    ? Diff<T[P], Long>
-    : DeepNumberLong<T[P]>
-};
-type NumberdRepeated = DeepNumberLong<SafeRepeated>;
+type node = SafeRepeated["str"];
